@@ -32,3 +32,17 @@ C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\Generate
 C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe.config
 C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.exe
 C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.pdb
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\bin\Debug\StreamWriter.pdb
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.csprojResolveAssemblyReference.cache
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\ControlPage.g.cs
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\MainWindow.g.cs
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\App.g.cs
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter_MarkupCompile.cache
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter_MarkupCompile.lref
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\App.baml
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\ControlPage.baml
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\MainWindow.baml
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.g.resources
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.Properties.Resources.resources
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.csproj.GenerateResource.Cache

@@ -4,15 +4,15 @@
 exe
 C#
 .cs
-C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\
 StreamWriter
 none
 false
 DEBUG;TRACE
-C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\App.xaml
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\App.xaml
 2-337945124
 
-15-143758966
+16-1370230379
 13738642453
 ControlPage.xaml;MainWindow.xaml;
 

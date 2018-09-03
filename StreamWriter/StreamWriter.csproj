@@ -69,6 +69,7 @@
     <Compile Include="Pack.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="tools\LocalIpv4.cs" />
     <Compile Include="UserInput.cs" />
     <Page Include="ControlPage.xaml">
       <SubType>Designer</SubType>

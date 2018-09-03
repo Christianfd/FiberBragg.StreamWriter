@@ -13,8 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Threading;
 using Microsoft.VisualBasic;
+using StreamWriter.tools;
 
 namespace StreamWriter
 {
@@ -36,6 +39,14 @@ namespace StreamWriter
             InitializeComponent();
             InitializeBackGroundWorker();
             InitializeSystem();
+            Console.WriteLine(LocalIpv4.GetEternet() + "Test1");
+            Console.WriteLine(LocalIpv4.GetLocalIPv4(NetworkInterfaceType.Ethernet) + "Test2");
+
+
+            foreach (var item in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         private void InitializeSystem()
