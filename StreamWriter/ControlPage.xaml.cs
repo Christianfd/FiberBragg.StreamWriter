@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Globalization;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading;
@@ -48,7 +49,8 @@ namespace StreamWriter
             session = Session.Create(51972, UInput.frequency);
             this.DataContext = UInput;
             message = new MessageHandler(UInput);
-            message.Update("Simulator Ready to Use");
+            var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
+            message.Update("Hello " + s +" The Simulator is ready to Use");
           
 
         }
@@ -60,6 +62,7 @@ namespace StreamWriter
             backgroundWorker1.WorkerSupportsCancellation = true;
             backgroundWorker1.DoWork +=
                 new DoWorkEventHandler(backgroundWorker1_DoWork);
+        
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -89,7 +92,7 @@ namespace StreamWriter
 
         private void StartButton_OnClick(object sender, RoutedEventArgs e)
         {
-            UInput.outputMessage = "Starting the Simulation";
+           message.Add("Starting the Simulation"); 
 
 
             if (backgroundWorker1.IsBusy != true)
@@ -115,6 +118,11 @@ namespace StreamWriter
                 backgroundWorker1.CancelAsync();
                 stopButton.IsEnabled = false;
                 startButton.IsEnabled = true;
+                if (backgroundWorker1.IsBusy != true)
+                {
+                    message.Add("Simulator Ready to Use");
+                }
+                
             }
             else
             {

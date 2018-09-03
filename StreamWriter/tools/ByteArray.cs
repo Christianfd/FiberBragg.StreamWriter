@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Linq;
 
-namespace StreamWriter
+namespace StreamWriter.tools
 {
     public class ByteArray 
     {

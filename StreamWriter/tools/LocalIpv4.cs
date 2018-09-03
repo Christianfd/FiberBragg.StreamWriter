@@ -41,7 +41,7 @@ namespace StreamWriter.tools
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Make sure [ 10.0.0.55 (Local Area Connect) ] is the only active connection");
             sb.AppendLine();
-            sb.AppendLine("Active Connections(Should be useful):");
+            sb.AppendLine("Active Connections(One Should be useable as target IP):");
 
            // Get a list of all network interfaces (usually one per network card, dialup, and VPN connection)
            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();

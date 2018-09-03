@@ -3,12 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:i="clr-namespace:StreamWriter"
       xmlns:local="clr-namespace:StreamWriter"
       xmlns:viewModels="StreamWriter.ViewModels"
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
       d:DesignHeight="333" d:DesignWidth="600"
-      Title="FiberBrigg - Control">
+      Title="FiberBrigg - Control"
+      Style="{StaticResource WinAll}">
 
 
     <!--<Page.Resources>
@@ -23,7 +25,7 @@
 
 
         <Grid.Background>
-            <ImageBrush ImageSource="Windmill.jpg" />
+            <ImageBrush ImageSource="images/Windmill.jpg" />
         </Grid.Background>
 
 
@@ -50,7 +52,7 @@
 
         <!--Setting up frequency part-->
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <Label Style="{StaticResource headerTextStyle}" VerticalAlignment="Center">Frequency(1-1000):</Label>
+            <Label Style="{StaticResource headerTextStyle}" VerticalAlignment="Center" FontFamily="Siemens Sans Black">Frequency(1-1000):</Label>
             <TextBox Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" Margin="2,0,2,0"
                      KeyDown="CharValidation"  Text="{Binding frequency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MinWidth="80">
             </TextBox>
@@ -93,17 +95,37 @@
 
         <!--Setting up the buttons-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="1" Margin="0,0,30,0">
-            <Button Click="StartButton_OnClick" Margin="2,2,2,2" MinWidth="100" x:Name="startButton">Start</Button>
+            <Button Click="StartButton_OnClick" Margin="2,2,2,2" MinWidth="100" x:Name="startButton" FontFamily="Siemens Slab">Start</Button>
             <Button Click="StopButton_OnClick" Margin="2,2,2,2" MinWidth="100" IsEnabled="False" x:Name="stopButton">Stop</Button>
         </StackPanel>
 
-        <Label x:Name="outputWindowLabel" Background="AliceBlue" Content="{Binding outputMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" Grid.Column="1" HorizontalAlignment="Left" Height="50" Margin="0.4,37.4,0,-57" Grid.Row="3" VerticalAlignment="Top" Width="410" RenderTransformOrigin="0.5,0.5">
-            <Label.Effect>
-                <DropShadowEffect BlurRadius="15" Direction="-49" Color="#FF8528F4" Opacity="0.965" ShadowDepth="6"/>
-            </Label.Effect>
-
-        </Label>
         
+        <!--Manages the message box at the bottom (Creates a grid so you can split up the Borders and the ScrollView, otherwise the Scrollview inherits the dropshadow and creates a background. - Relevant for the assignment-->
+        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Grid.Column="1" HorizontalAlignment="Left" Height="50" Margin="0.4,37.4,0,-57" Grid.Row="3" VerticalAlignment="Top" Width="410" RenderTransformOrigin="0.5,0.5" >
+    <Border x:Name="border"  Background="AliceBlue" CornerRadius="3" BorderBrush="#FFE7E4E4" BorderThickness="0,0,1.5,1.5"  ClipToBounds="True" >
+        <Border Background="Transparent" BorderBrush="Black" BorderThickness="1.5,1.5,0,0" CornerRadius="2">
+
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
+            </Border.Effect>
+        </Border>
+    </Border>
+            
+            <!--ScrollViewer so it can act more like a standard terminal/Console-->
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="3">
+        <TextBlock x:Name="outputWindowLabel" Text="{Binding outputMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }">
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="0" Color="#00CA0808" Opacity="0"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+    </ScrollViewer>
+        </Grid>
+
+     
+
+
+
 
     </Grid>
 </Page>

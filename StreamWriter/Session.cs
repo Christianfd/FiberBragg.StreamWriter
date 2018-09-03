@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using StreamWriter.tools;
 
 namespace StreamWriter
 {
@@ -60,7 +61,7 @@ namespace StreamWriter
             Packet.GeneratePeaks();
 
             IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddress = IPAddress.Parse("10.0.0.55");
+            IPAddress ipAddress = IPAddress.Any;
             //
             seekConnection = true;
 
@@ -90,15 +91,15 @@ namespace StreamWriter
 
                 Console.WriteLine("Simulator awaiting connection..");
                 Console.WriteLine(ipAddress);
-                message.Update("Simulator awaiting Connection..");
-                message.Add("Using IP adress " + ServerListener.Server.LocalEndPoint.ToString());
+                message.Add("Simulator awaiting Connection..");
+               // message.Add("Using IP adress " + ServerListener.Server.LocalEndPoint.ToString());
                // message.Add("Sending with a Frquency of:" + this.frequency);
                 Console.WriteLine("Sending with a Frquency of: {0}", this.frequency);
 
                 clientSocket = ServerListener.AcceptTcpClient();
 
                 Console.WriteLine("Connection Made!");
-                message.Update("Connection Made!");
+                message.Add("Connection Made!");
                 startTime = DateTime.Now;
                 this.OnConnect();
             }
@@ -112,21 +113,21 @@ namespace StreamWriter
                 if (e.Message == a)
                 {
                     var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
-                    message.Update("Connection terminated by " + s); 
+                    message.Add("Connection terminated by " + s); 
                     Console.WriteLine("...");
                     Console.WriteLine("Connection terminated by {0}", s );
                     Console.WriteLine("...");
 
                 } else if (e.Message == b)
                 {
-                    message.Update("Connection was lost from Remote Host");
+                    message.Add("Connection was lost from Remote Host");
                     Console.WriteLine("...");
                     Console.WriteLine("Connection was lost from Remote Host");
                     Console.WriteLine("...");
 
                 } else if (e.Message == c)
                 {
-                    message.Update("Connection was lost from by Software on Host");
+                    message.Add("Connection was lost from by Software on Host");
                     Console.WriteLine("...");
                     Console.WriteLine("Connection was lost from by Software on Host");
                     Console.WriteLine("...");
@@ -134,6 +135,7 @@ namespace StreamWriter
                 else
                 {
                     message.Update("Unknown Exception:");
+                    message.Add(e.ToString());
                     Console.WriteLine("Unknown Exception:");
                     Console.WriteLine(e.ToString());
                 }
@@ -156,7 +158,7 @@ namespace StreamWriter
         private void OnConnect()
         {
             Packet.UpdateTime();
-            message.Update("Sending Data to Remote Host");
+            message.Add("Sending Data to Remote Host");
             Console.WriteLine("Sending Data to Remote Host");
             while (true)
             {
@@ -177,6 +179,7 @@ namespace StreamWriter
                 {
                     var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
                     message.Update("Sending data was stopped by " + s);
+                    message.Add("Simulator should be ready to use");
                     Console.WriteLine("Sending data was stopped by {0}", s);
                     break;
                 }

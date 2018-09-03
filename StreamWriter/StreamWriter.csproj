@@ -58,13 +58,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ByteArray.cs" />
+    <Compile Include="tools\ByteArray.cs" />
     <Compile Include="ControlPage.xaml.cs">
       <DependentUpon>ControlPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="IPackHandler.cs" />
     <Compile Include="ISession.cs" />
-    <Compile Include="MessageHandler.cs" />
+    <Compile Include="tools\MessageHandler.cs" />
     <Compile Include="ObservableCollectionWithItemNotify.cs" />
     <Compile Include="Pack.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -118,7 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Windmill.jpg" />
+    <Resource Include="images\Windmill.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\redpaper.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
