@@ -43,16 +43,16 @@
 
 
         <!--Setting up the Header-->
-        <Label Grid.Column="0"  Grid.Row="0"  Style="{StaticResource titleTextStyle}" Grid.ColumnSpan="2" Margin="20">
+        <Label Grid.Column="0"  Grid.Row="0" Style="{StaticResource titleTextStyle}" Grid.ColumnSpan="2" Margin="20">
             FiberBrigg Simulator
         </Label>
+        <Button Grid.Column="1" Width="100" Height="30" Click="Internet_MessageBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">Internet Check</Button>
 
         <!--Setting up frequency part-->
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
             <Label Style="{StaticResource headerTextStyle}" VerticalAlignment="Center">Frequency(1-1000):</Label>
             <TextBox Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" Margin="2,0,2,0"
                      KeyDown="CharValidation"  Text="{Binding frequency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MinWidth="80">
-
             </TextBox>
         </StackPanel>
 
