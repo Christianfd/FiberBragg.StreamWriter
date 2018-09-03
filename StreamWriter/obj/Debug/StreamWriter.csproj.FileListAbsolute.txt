@@ -1,0 +1,34 @@
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe.config
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\bin\Debug\StreamWriter.pdb
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\MainWindow.g.cs
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\App.g.cs
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter_MarkupCompile.cache
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter_MarkupCompile.lref
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\MainWindow.baml
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter.g.resources
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter.Properties.Resources.resources
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter.csproj.GenerateResource.Cache
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter.exe
+C:\Users\davis01c\Documents\Visual Studio 2015\Projects\StreamWriter\StreamWriter\obj\Debug\StreamWriter.pdb
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe.config
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter.exe
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter.pdb
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter.csprojResolveAssemblyReference.cache
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\MainWindow.g.cs
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\App.g.cs
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter_MarkupCompile.cache
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter_MarkupCompile.lref
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\bin\Debug\StreamWriter.pdb
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\MainWindow.baml
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter.g.resources
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter.Properties.Resources.resources
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\StreamWriter.csproj.GenerateResource.Cache
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\ControlPage.g.cs
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\App.baml
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\ControlPage.baml
+C:\Software\FiberBragg.StreamWriter\StreamWriter\StreamWriter\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\bin\Debug\StreamWriter.exe.config
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.exe
+C:\Software\FiberBragg\FiberBragg.StreamWriter\StreamWriter\obj\Debug\StreamWriter.pdb
