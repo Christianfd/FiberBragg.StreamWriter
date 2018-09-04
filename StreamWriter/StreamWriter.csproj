@@ -64,8 +64,8 @@
     </Compile>
     <Compile Include="IPackHandler.cs" />
     <Compile Include="ISession.cs" />
+    <Compile Include="tools\charValidation.cs" />
     <Compile Include="tools\MessageHandler.cs" />
-    <Compile Include="ObservableCollectionWithItemNotify.cs" />
     <Compile Include="Pack.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Session.cs" />

@@ -39,7 +39,7 @@ namespace StreamWriter
         }
 
         /// <summary>
-        /// This Creates and interface for Session allowing for more control of what's accessible
+        /// This Creates an interface for Session allowing for more control of what's accessible
         /// </summary>
         /// <param name="port">51972 is the go to port</param>
         /// <returns></returns>
@@ -73,7 +73,13 @@ namespace StreamWriter
             while (true)
             {
                 this.TryToConnect(ipAddress);
-                if (seekConnection != true) { break;}
+                if (seekConnection != true)
+                {
+                    var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
+                    message.Update("Connection terminated by " + s);
+                    message.Add("Simulator should be ready to use");
+                    break;
+                }
             }
         }
 
@@ -94,7 +100,7 @@ namespace StreamWriter
                 message.Add("Simulator awaiting Connection..");
                // message.Add("Using IP adress " + ServerListener.Server.LocalEndPoint.ToString());
                // message.Add("Sending with a Frquency of:" + this.frequency);
-                Console.WriteLine("Sending with a Frquency of: {0}", this.frequency);
+               // Console.WriteLine("Sending with a Frquency of: {0}", this.frequency);
 
                 clientSocket = ServerListener.AcceptTcpClient();
 
@@ -109,13 +115,12 @@ namespace StreamWriter
                 var a = "A blocking operation was interrupted by a call to WSACancelBlockingCall";
                 var b = "An existing connection was forcibly closed by the remote host";
             
-               
+               //Could be a CASE, however a good instance of improvised code as more problems come up
                 if (e.Message == a)
                 {
-                    var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
-                    message.Add("Connection terminated by " + s); 
+                  
                     Console.WriteLine("...");
-                    Console.WriteLine("Connection terminated by {0}", s );
+                    Console.WriteLine("Connection terminated by User");
                     Console.WriteLine("...");
 
                 } else if (e.Message == b)
@@ -177,10 +182,7 @@ namespace StreamWriter
                 Send(byteBuffer);
                 if (seekConnection != true)
                 {
-                    var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
-                    message.Update("Sending data was stopped by " + s);
-                    message.Add("Simulator should be ready to use");
-                    Console.WriteLine("Sending data was stopped by {0}", s);
+                    //Console.WriteLine("Sending data was stopped by {0}", s);
                     break;
                 }
                 Thread.Sleep(1);

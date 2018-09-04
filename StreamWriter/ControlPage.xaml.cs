@@ -36,7 +36,6 @@ namespace StreamWriter
         private string previousText { get; set; } 
         public ControlPage()
         {
-
             InitializeComponent();
             InitializeBackGroundWorker();
             InitializeSystem();
@@ -51,14 +50,11 @@ namespace StreamWriter
             message = new MessageHandler(UInput);
             var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
             message.Update("Hello " + s +" The Simulator is ready to Use");
-          
-
         }
 
         private void InitializeBackGroundWorker()
         {
             backgroundWorker1 = new BackgroundWorker();
-
             backgroundWorker1.WorkerSupportsCancellation = true;
             backgroundWorker1.DoWork +=
                 new DoWorkEventHandler(backgroundWorker1_DoWork);
@@ -92,11 +88,12 @@ namespace StreamWriter
 
         private void StartButton_OnClick(object sender, RoutedEventArgs e)
         {
-           message.Add("Starting the Simulation"); 
+          
 
 
             if (backgroundWorker1.IsBusy != true)
             {
+                message.Add("Starting the Simulation");
                 backgroundWorker1.RunWorkerAsync();
                 stopButton.IsEnabled = true;
                 startButton.IsEnabled = false;
@@ -134,15 +131,16 @@ namespace StreamWriter
         //This needs some more implementation, might be useful with another method to call which returns false on other wanted keypresses like tap, enter and backspace
         private void CharValidation(object sender, KeyEventArgs e)
         {
+             var key = (int) e.Key;
+            // message.Update(key.ToString());
 
-            if ((int)e.Key == 3)
+            if (key == 6 || key == 85)
             {
-                e.Handled = false;
+                StartButton_OnClick(startButton,e);
             }
-            else
-            {
-                e.Handled = (int)e.Key >= 44 || (int)e.Key <= 34;
-            }
+            e.Handled = charValidation.Validate(key);
+
+
 
         }
 

@@ -13,18 +13,13 @@ namespace StreamWriter
     {
         private int _frequency;
         private string _outputMessage;
-
         private ushort[] _numPeak;
-
-
         public ushort[] numPeak
         {
             get { return _numPeak; }
             set
             {
                 _numPeak = value;
-             
-
             }
         }
 
@@ -32,7 +27,6 @@ namespace StreamWriter
         public ushort this[int index]
         {
             get { return _numPeak[index]; }
-
             set
             {
                 _numPeak[index] = ValidateNumPeak(value); ;
@@ -76,13 +70,10 @@ namespace StreamWriter
 /// </summary>
         public UserInput()
         {
-            frequency = 100;
-            
+           frequency = 100;
            numPeak = new ushort[16];
-    
 
         }
-
 
 
         private int ValidateFrequency(int value)
@@ -103,25 +94,12 @@ namespace StreamWriter
 
         private ushort ValidateNumPeak(ushort value)
         {
-
             if (value >= 255)
             {
-           
                 return value = 255;
             }
-
-
             return value;
-
         }
-
-
-private void numPeak_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Console.WriteLine("Observable Object changed");
-        }
-
-
 
         public void UpdateFrequency(ISession session)
         {
