@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using StreamWriter.Interfaces;
 using StreamWriter.tools;
 
 namespace StreamWriter

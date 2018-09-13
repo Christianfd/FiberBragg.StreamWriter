@@ -58,13 +58,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IErrorHandler.cs" />
     <Compile Include="tools\ByteArray.cs" />
     <Compile Include="ControlPage.xaml.cs">
       <DependentUpon>ControlPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IPackHandler.cs" />
-    <Compile Include="ISession.cs" />
+    <Compile Include="Interfaces\IPackHandler.cs" />
+    <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="tools\charValidation.cs" />
+    <Compile Include="tools\ErrorHandler.cs" />
     <Compile Include="tools\MessageHandler.cs" />
     <Compile Include="Pack.cs" />
     <Compile Include="Properties\Annotations.cs" />

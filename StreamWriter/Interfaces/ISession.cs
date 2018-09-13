@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using StreamWriter.tools;
+﻿using StreamWriter.tools;
 
-namespace StreamWriter
+namespace StreamWriter.Interfaces
 {
     public interface ISession
     {

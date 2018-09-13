@@ -18,6 +18,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading;
 using Microsoft.VisualBasic;
+using StreamWriter.Interfaces;
 using StreamWriter.tools;
 
 namespace StreamWriter
@@ -29,11 +30,13 @@ namespace StreamWriter
     {
 
         public UserInput UInput { get; set; }
-        private ISession session { get; set; }
+        private ISession Session { get; set; }
         private IPackHandler Packet { get; set; }
-        private MessageHandler message { get; set; }
+        private MessageHandler Message { get; set; }
+        private IErrorSimulator ErrorSim { get; set; }
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private string previousText { get; set; } 
+        private string userName { get; set;} 
+
         public ControlPage()
         {
             InitializeComponent();
@@ -41,15 +44,19 @@ namespace StreamWriter
             InitializeSystem();
         }
 
+
+
         private void InitializeSystem()
         {
-            UInput = new UserInput();
-            Packet = Pack.createPack();
-            session = Session.Create(51972, UInput.frequency);
+            UInput = new UserInput(this);
             this.DataContext = UInput;
-            message = new MessageHandler(UInput);
-            var s = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
-            message.Update("Hello " + s +" The Simulator is ready to Use");
+            Message = new MessageHandler(UInput);
+            Packet = Pack.createPack();
+            Session = StreamWriter.Session.Create(51972, UInput.frequency);
+            ErrorSim = ErrorSimulator.Create();
+
+            userName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Environment.UserName);
+            Message.Update("Hello " + userName +" The Simulator is ready to Use");
         }
 
         private void InitializeBackGroundWorker()
@@ -69,9 +76,9 @@ namespace StreamWriter
                 Console.WriteLine(item);
             }
 
-            UInput.UpdateFrequency(session);
+            UInput.UpdateFrequency(Session);
             Packet.UpdateArrays(UInput);
-            session.Start(Packet, message);
+            Session.Start(Packet, Message);
 
             //Used for learning and testing background worker initially
             //for (int i = 0; i < 10; i++)
@@ -93,7 +100,7 @@ namespace StreamWriter
 
             if (backgroundWorker1.IsBusy != true)
             {
-                message.Add("Starting the Simulation");
+                Message.Add("Starting the Simulation");
                 backgroundWorker1.RunWorkerAsync();
                 stopButton.IsEnabled = true;
                 startButton.IsEnabled = false;
@@ -111,15 +118,14 @@ namespace StreamWriter
             if (backgroundWorker1.IsBusy == true && backgroundWorker1.WorkerSupportsCancellation)
             {
 
-                session.Stop();
+                Session.Stop();
                 backgroundWorker1.CancelAsync();
                 stopButton.IsEnabled = false;
                 startButton.IsEnabled = true;
                 if (backgroundWorker1.IsBusy != true)
                 {
-                    message.Add("Simulator Ready to Use");
+                    Message.Add("Simulator Ready to Use");
                 }
-                
             }
             else
             {
@@ -139,9 +145,6 @@ namespace StreamWriter
                 StartButton_OnClick(startButton,e);
             }
             e.Handled = charValidation.Validate(key);
-
-
-
         }
 
 

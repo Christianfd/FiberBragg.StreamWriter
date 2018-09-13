@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StreamWriter
+namespace StreamWriter.Interfaces
 {
     public interface IPackHandler
 

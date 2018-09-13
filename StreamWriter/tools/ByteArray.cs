@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Linq;
+using StreamWriter.Interfaces;
 
 namespace StreamWriter.tools
 {

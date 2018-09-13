@@ -4,8 +4,10 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using System.Windows.Interop;
 using StreamWriter.Annotations;
+using StreamWriter.Interfaces;
 
 namespace StreamWriter
 {
@@ -14,6 +16,9 @@ namespace StreamWriter
         private int _frequency;
         private string _outputMessage;
         private ushort[] _numPeak;
+        private bool _errorState;
+        private int _eSensor;
+
         public ushort[] numPeak
         {
             get { return _numPeak; }
@@ -31,6 +36,8 @@ namespace StreamWriter
             {
                 _numPeak[index] = ValidateNumPeak(value); ;
                 OnPropertyChanged("Item[]");
+                eSensorMaxValue();
+
             }
         }
 
@@ -55,24 +62,90 @@ namespace StreamWriter
                 OnPropertyChanged("frequency");
             }
         }
+
+
+
+
+        public bool errorState
+        {
+            get { return _errorState; }
+            set
+            {
+                _errorState = value;
+                OnPropertyChanged("errorState");
+                _controlPage.errorModeExpander.IsExpanded = value;
+            }
+        }
+
+        public int eSensor
+        {
+            get { return _eSensor; }
+            set
+            {
+                _eSensor = ValidateeSensor(value);
+                OnPropertyChanged("eSensor");
+
+            }
+        }
+        /// <summary>
+        /// Validates the Sensor data and makes sure it doesn't exceed the user inputted number
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private int ValidateeSensor(int value)
+        {
+            var numPeakSum = 0;
+            foreach (var item in numPeak)
+            {
+                numPeakSum = numPeakSum + item;
+            }
+
+            if (value >= numPeakSum)
+            {
+                return numPeakSum;
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+        private void eSensorMaxValue()
+        {
+            var numPeakSum = 0;
+            foreach (var item in numPeak)
+            {
+                numPeakSum = numPeakSum + item;
+            }
+
+            if (_eSensor >= numPeakSum)
+            {
+                eSensor = numPeakSum;
+            }
+            else
+            {
+            }
+        }
+
+        public int eTime { get; set; }
+       
+
+        private ControlPage _controlPage { get; set; }
+        public int eChannel { get; set; }
+        //private IError Error { get; set; }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-
-        public bool error { get; set; }
-        public int eTime { get; set; }
-        public int eChannel { get; set; }
-        public int eSensor { get; set; }
-       // private IError Error { get; set; }
-
-/// <summary>
-/// Constructor
-/// </summary>
-        public UserInput()
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UserInput(ControlPage _cPage)
         {
            frequency = 100;
            numPeak = new ushort[16];
-
+            _controlPage = _cPage;
         }
 
 
@@ -106,14 +179,13 @@ namespace StreamWriter
             session.frequency = this.frequency;
         }
 
-       
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             //Console.WriteLine("Property Changed event handler called by {0}", propertyName);
         }
+
     }
 
 }
