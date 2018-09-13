@@ -78,7 +78,8 @@ namespace StreamWriter
 
             UInput.UpdateFrequency(Session);
             Packet.UpdateArrays(UInput);
-            Session.Start(Packet, Message);
+            ErrorSim.Updater(UInput);
+            Session.Start(Packet, Message, ErrorSim);
 
             //Used for learning and testing background worker initially
             //for (int i = 0; i < 10; i++)

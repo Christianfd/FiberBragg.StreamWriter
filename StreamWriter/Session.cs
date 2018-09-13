@@ -24,7 +24,7 @@ namespace StreamWriter
         private IPackHandler Packet { get; set; }
         private DateTime startTime { get; set; }
         private MessageHandler message{ get; set; }
-
+        private IErrorSimulator ErrorSim { get; set; }
 
 
         private Session(int p, int f=50)
@@ -54,10 +54,11 @@ namespace StreamWriter
         /// Sets up the the socket and passes the Packet information
         /// </summary>
         /// <param name="Packet"></param>
-        public void Start(IPackHandler p, MessageHandler m)
+        public void Start(IPackHandler p, MessageHandler m, IErrorSimulator e)
         {
             Packet = p;
             message = m;
+            ErrorSim = e;
 
             Packet.GeneratePeaks();
 
@@ -163,18 +164,25 @@ namespace StreamWriter
         /// <param name="clientSocket"></param>
         private void OnConnect()
         {
+
+            //Program is now sending data.
             Packet.UpdateTime();
             message.Add("Sending Data to Remote Host");
             Console.WriteLine("Sending Data to Remote Host");
             while (true)
             {
-                //Sets the timeElapsed for calculating weather or not it should update the packet before sending. -- should work due to Thread.Sleep(1) but without it it would still update too often
+                //Sets the timeElapsed for calculating whether or not it should update the packet before sending. -- should work due to Thread.Sleep(1) but without it it would still update too often
                 TimeSpan timeElapsed = DateTime.Now - startTime;
                 var b = timeElapsed.Milliseconds;
                 int a = 1000 / frequency;
                 if (b/a == (int)b/a)
                 {
                     Packet.GeneratePeaks();
+
+                    if (ErrorSim.ErrorTimeCheck(timeElapsed))
+                    {
+                        Console.WriteLine("ErrorSim is ready to begin");
+                    }
                     
                 }
                 Packet.UpdateTime();
