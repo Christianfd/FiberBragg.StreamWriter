@@ -1,4 +1,5 @@
 ﻿using System;
+using StreamWriter.tools;
 
 namespace StreamWriter.Interfaces
 {
@@ -22,6 +23,8 @@ namespace StreamWriter.Interfaces
         void GeneratePeaks();
         void UpdateTime();
         void UpdateArrays(UserInput UInput);
+        void RemovePeak(int peakNumber);
+        void RemovePeak(int peakNumber, MessageHandler m);
         byte[] ToByteArray();
 
     }

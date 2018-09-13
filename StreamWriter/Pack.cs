@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Documents;
 using StreamWriter.Interfaces;
 using StreamWriter.tools;
 
@@ -50,7 +52,7 @@ namespace StreamWriter
             serialNumber = 0; //This is done so it can increment each loop.
             timeStampSec = 12345; //placeholder number
             timeStampNanoSec = (uint)12345.12345; //placeholdernumber
-            numPeak = new UInt16[] { 5, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            numPeak = new UInt16[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             peakValue = 1400;
             peakRange = 200;
             foreach (var peak in numPeak)
@@ -63,7 +65,7 @@ namespace StreamWriter
 
         public void UpdateArrays(UserInput UInput)
         {
-
+            numberOfPeaks = 0;
             numPeak = UInput.numPeak;
             foreach (var peak in numPeak)
             {
@@ -75,6 +77,7 @@ namespace StreamWriter
         public void GeneratePeaks()
         {
             //Below code will generate a data set where each peak gets a realistic value, with a realistic range, and a realisitc median value based on the index of it.
+            arrayOfPeaks = new double[numberOfPeaks];
 
             total = 0;
             Random r = new Random();
@@ -94,7 +97,6 @@ namespace StreamWriter
                 for (int i = total; i < j + total ; i++)
                 {
                     double rnd = r.NextDouble();
-                    double currentIndexValue = (double)i / 10;
                     vMin = (peakValue + (2 * a * k)) * 0.99;
                     vMax = peakValue + (a + 3 * a * k);
                     arrayOfPeaks[i] = ((rnd * (vMax - vMin)) + vMin);
@@ -120,6 +122,26 @@ namespace StreamWriter
                 timeStampNanoSec = Convert.ToUInt32((timeElapsed.TotalSeconds - (int)timeElapsed.TotalSeconds) * 1e09);
                 serialNumber++;
             }
+
+
+        public void RemovePeak(int peakNumber)
+        {
+            var listOfPeaks = new List<double>(arrayOfPeaks);
+            listOfPeaks.RemoveAt(peakNumber);
+            arrayOfPeaks = listOfPeaks.ToArray();
+            //should be faster but isn't working correclty. Need to try another to check if the problem is elsewhere
+            // arrayOfPeaks.RemoveAt(peakNumber);
+        }
+
+        public void RemovePeak(int peakNumber, MessageHandler message)
+        { 
+          //  message.Update("Current AoP size is:                       " + arrayOfPeaks.Length);
+            RemovePeak(peakNumber);
+           // message.Add("Peak has been remove at index:   " + peakNumber);
+          //  message.Add("New AoP size:                                " + arrayOfPeaks.Length);
+        }
+
+
         /// <summary>
         /// This will return a ByteArray with the interface objects properties
         /// Data type is byte[]

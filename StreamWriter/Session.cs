@@ -109,6 +109,10 @@ namespace StreamWriter
                 Console.WriteLine("Connection Made!");
                 message.Add("Connection Made!");
                 startTime = DateTime.Now;
+                //this is a variable created which is used to check if the user was informed about an error simulation of missing peaks
+
+                
+
                 this.OnConnect();
             }
             catch (Exception e)
@@ -182,6 +186,9 @@ namespace StreamWriter
                     if (ErrorSim.ErrorTimeCheck(timeElapsed))
                     {
                         Console.WriteLine("ErrorSim is ready to begin");
+                        ErrorSim.SimulateMissingPeak(Packet, message);
+
+                      
                     }
                     
                 }
@@ -211,6 +218,11 @@ namespace StreamWriter
             ServerListener.Stop();
             
             
+        }
+
+        public void UpdateFrequency(UserInput UInput)
+        {
+            this.frequency = UInput.frequency;
         }
 
 

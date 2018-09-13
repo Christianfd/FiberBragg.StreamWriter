@@ -76,7 +76,8 @@ namespace StreamWriter
                 Console.WriteLine(item);
             }
 
-            UInput.UpdateFrequency(Session);
+            
+            Session.UpdateFrequency(UInput);
             Packet.UpdateArrays(UInput);
             ErrorSim.Updater(UInput);
             Session.Start(Packet, Message, ErrorSim);
@@ -105,6 +106,7 @@ namespace StreamWriter
                 backgroundWorker1.RunWorkerAsync();
                 stopButton.IsEnabled = true;
                 startButton.IsEnabled = false;
+                UInput.isUIEnabled = false;
 
             }
             else
@@ -123,6 +125,7 @@ namespace StreamWriter
                 backgroundWorker1.CancelAsync();
                 stopButton.IsEnabled = false;
                 startButton.IsEnabled = true;
+                UInput.isUIEnabled = true;
                 if (backgroundWorker1.IsBusy != true)
                 {
                     Message.Add("Simulator Ready to Use");
@@ -178,5 +181,7 @@ namespace StreamWriter
         {
             LocalIpv4.DisplayIPAddresses();
         }
+
+
     }
 }

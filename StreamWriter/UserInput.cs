@@ -18,6 +18,7 @@ namespace StreamWriter
         private ushort[] _numPeak;
         private bool _errorState;
         private int _eSensor;
+        private bool _isUiEnabled;
 
         public ushort[] numPeak
         {
@@ -87,6 +88,68 @@ namespace StreamWriter
 
             }
         }
+   
+
+        public int eTime { get; set; }
+       
+
+        private ControlPage _controlPage { get; set; }
+
+        public bool isUIEnabled
+        {
+            get { return _isUiEnabled; }
+            set
+            {
+                _isUiEnabled = value;
+                OnPropertyChanged("isUIEnabled");
+
+            }
+        }
+
+        public int eChannel { get; set; }
+        //private IError Error { get; set; }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UserInput(ControlPage _cPage)
+        {
+           frequency = 100;
+           numPeak = new ushort[16];
+            _controlPage = _cPage;
+            isUIEnabled = true;
+
+        }
+
+
+        private int ValidateFrequency(int value)
+        {
+            if (value >= 1000)
+            {
+                return 1000;
+            }
+            else if (value <= 0)
+            {
+                return (int)1;
+            }
+            else
+            {
+                return (int)value;
+            }
+        }
+
+        private ushort ValidateNumPeak(ushort value)
+        {
+            if (value >= 255)
+            {
+                return value = 255;
+            }
+            return value;
+        }
         /// <summary>
         /// Validates the Sensor data and makes sure it doesn't exceed the user inputted number
         /// </summary>
@@ -125,58 +188,6 @@ namespace StreamWriter
             else
             {
             }
-        }
-
-        public int eTime { get; set; }
-       
-
-        private ControlPage _controlPage { get; set; }
-        public int eChannel { get; set; }
-        //private IError Error { get; set; }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public UserInput(ControlPage _cPage)
-        {
-           frequency = 100;
-           numPeak = new ushort[16];
-            _controlPage = _cPage;
-        }
-
-
-        private int ValidateFrequency(int value)
-        {
-            if (value >= 1000)
-            {
-                return 1000;
-            }
-            else if (value <= 0)
-            {
-                return (int)1;
-            }
-            else
-            {
-                return (int)value;
-            }
-        }
-
-        private ushort ValidateNumPeak(ushort value)
-        {
-            if (value >= 255)
-            {
-                return value = 255;
-            }
-            return value;
-        }
-
-        public void UpdateFrequency(ISession session)
-        {
-            session.frequency = this.frequency;
         }
 
         [NotifyPropertyChangedInvocator]
