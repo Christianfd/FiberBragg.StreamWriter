@@ -65,8 +65,17 @@ namespace StreamWriter
 
         public void UpdateArrays(UserInput UInput)
         {
+            var s = UInput.getNumPeak();
+            var k = 0;
             numberOfPeaks = 0;
-            numPeak = UInput.numPeak;
+
+            foreach (var value in s)
+            {
+                numPeak[k] = value;
+                k++;
+            }
+          
+
             foreach (var peak in numPeak)
             {
                 numberOfPeaks += peak;

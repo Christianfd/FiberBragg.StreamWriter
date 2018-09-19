@@ -190,6 +190,11 @@ namespace StreamWriter
             }
         }
 
+        public ushort[] getNumPeak()
+        {
+            return _numPeak;
+        }
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

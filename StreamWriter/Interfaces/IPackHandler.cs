@@ -9,7 +9,7 @@ namespace StreamWriter.Interfaces
         byte status { get; }
         byte option { get; }
         UInt16 messageLength { get; }
-        UInt32 contentLength { get; }
+        UInt32 contentLength { get; set; }
         ushort? messageString { get; }
         UInt16 headerLength { get; }
         UInt16 headerVersion { get; }

@@ -9,5 +9,6 @@ namespace StreamWriter.Interfaces
        void Updater(UserInput UI);
 
         void SimulateMissingPeak(IPackHandler packet, MessageHandler m);
+        bool userInformedAboutErrorSimulation { get; set; }
     }
 }

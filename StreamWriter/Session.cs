@@ -25,12 +25,14 @@ namespace StreamWriter
         private DateTime startTime { get; set; }
         private MessageHandler message{ get; set; }
         private IErrorSimulator ErrorSim { get; set; }
-
+        private UserInput UInput { get; set; }
 
         private Session(int p, int f=50)
         {
             port = p;
             frequency = f;
+            
+
         }
 
   ~Session()
@@ -54,26 +56,28 @@ namespace StreamWriter
         /// Sets up the the socket and passes the Packet information
         /// </summary>
         /// <param name="Packet"></param>
-        public void Start(IPackHandler p, MessageHandler m, IErrorSimulator e)
+        public void Start(IPackHandler p, MessageHandler m, IErrorSimulator e, UserInput UI)
         {
             Packet = p;
             message = m;
             ErrorSim = e;
+            UInput = UI;
 
             Packet.GeneratePeaks();
 
             IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddress = IPAddress.Any;
+            IPAddress ipAddress = IPAddress.Any;  //IPAddress.Parse("10.0.0.55")
             //
             seekConnection = true;
 
 
             //Try with IPAddress.any instead of the variable "ipAddress"
-            ServerListener = new TcpListener(IPAddress.Any, port);
+            ServerListener = new TcpListener(ipAddress, port);
             clientSocket = default(TcpClient);
 
             while (true)
             {
+                ErrorSim.userInformedAboutErrorSimulation = false;
                 this.TryToConnect(ipAddress);
                 if (seekConnection != true)
                 {
@@ -181,6 +185,7 @@ namespace StreamWriter
                 int a = 1000 / frequency;
                 if (b/a == (int)b/a)
                 {
+                    Packet.UpdateArrays(UInput);
                     Packet.GeneratePeaks();
 
                     if (ErrorSim.ErrorTimeCheck(timeElapsed))

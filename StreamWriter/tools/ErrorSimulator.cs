@@ -9,7 +9,8 @@ namespace StreamWriter.tools
         private bool errorState { get; set; }
         private int errorTime { get; set; }
         private int errorSensor { get; set; }
-        private bool userInformedAboutErrorSimulation { get; set; }
+        public bool userInformedAboutErrorSimulation { get; set; }
+
 
 
         public static IErrorSimulator Create()
@@ -57,6 +58,8 @@ namespace StreamWriter.tools
 
                 var eSensor = errorSensor - 1;
                 packet.RemovePeak(eSensor, m);
+                numPeakUpdater(packet);
+                packet.contentLength = (uint)(56 + (packet.arrayOfPeaks.Length * 8));
                 if (userInformedAboutErrorSimulation) return;
                 m.Add("Error Simulation has started and removed Sensor #" + errorSensor);
                 userInformedAboutErrorSimulation = true;
@@ -68,6 +71,30 @@ namespace StreamWriter.tools
                 m.Add("Error Mode can't simulate a removal of non-existant peaks");
                 userInformedAboutErrorSimulation = true;
             }
+        }
+
+
+        /// <summary>
+        /// Reduces the value of the correlating index of a given sensor by 1 to simulate a loss of sensor.
+        /// </summary>
+        /// <param name="packet"></param>
+        private void numPeakUpdater(IPackHandler packet)
+        {
+            var i = 0;
+            var k = 0;
+            foreach (var item in packet.numPeak)
+            {
+                i = item + i;
+               
+
+                if (i >= errorSensor)
+                {
+                    packet.numPeak[k] -= 1;
+                    break;
+                }
+                k++;
+            }
+         
         }
     }
 }
