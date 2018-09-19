@@ -103,11 +103,13 @@ namespace StreamWriter
                 }
 
                 var k = 0;
+             
                 for (int i = total; i < j + total ; i++)
                 {
+                    var value = peakValue + a + (a * k + a * k);
                     double rnd = r.NextDouble();
-                    vMin = (peakValue + (2 * a * k)) * 0.99;
-                    vMax = peakValue + (a + 3 * a * k);
+                    vMin = (value - a);
+                    vMax = (value + a) * 0.99;
                     arrayOfPeaks[i] = ((rnd * (vMax - vMin)) + vMin);
                     k++;
                 }

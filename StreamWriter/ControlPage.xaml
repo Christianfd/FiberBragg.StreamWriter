@@ -45,7 +45,7 @@
 
 
         <!--Setting up the Header-->
-        <Label Grid.Column="0"  Grid.Row="0" Style="{StaticResource titleTextStyle}" Grid.ColumnSpan="2" Margin="20" Content="FiberBragg Simulator v. 1.1"/>
+        <Label Grid.Column="0"  Grid.Row="0" Style="{StaticResource titleTextStyle}" Grid.ColumnSpan="2" Margin="20" Content="FiberBragg Simulator    v1.2"/>
         <Button Grid.Column="1" Width="100" Height="30" Click="Internet_MessageBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">Internet Check</Button>
 
         <!--Setting up frequency part-->
@@ -179,7 +179,7 @@
                     <StackPanel Orientation="Vertical"  Margin="10,0,10,10">
                         <Label>Sensor number</Label>
                         <TextBox KeyDown="CharValidation" Text="{Binding eSensor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        <Label>Seoconds</Label>
+                        <Label Content="Seconds"/>
                         <TextBox KeyDown="CharValidation" Text="{Binding eTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     </StackPanel>
                 </Expander>
