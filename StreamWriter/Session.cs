@@ -66,7 +66,7 @@ namespace StreamWriter
             Packet.GeneratePeaks();
 
             IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddress = IPAddress.Any;  //IPAddress.Parse("10.0.0.55")
+            IPAddress ipAddress = IPAddress.Any;  //IPAddress.Parse("10.0.0.55") or IPAddress.Any
             //
             seekConnection = true;
 
