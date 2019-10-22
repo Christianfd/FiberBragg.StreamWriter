@@ -19,7 +19,7 @@ namespace StreamWriter.tools
                 {
 
 
-
+                    //Initial Pack page 59ish - Search for status
                     
                     writer.Write(packet.status);
                     writer.Write(packet.option);
@@ -29,7 +29,7 @@ namespace StreamWriter.tools
                     {
                         writer.Write((ushort)packet.messageString);
                     }
-
+                    //Get peaks pack - page 74ish buttom - Search for GetPeaks
                     writer.Write(packet.headerLength);
                     writer.Write(packet.headerVersion);
                     writer.Write(new byte[4]);
